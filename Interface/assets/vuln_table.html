@@ -1,0 +1,46 @@
+<!-- RA5olver Vulnerability Table -->
+<!-- Copyright © 2025 Ian Rivera. All rights reserved. -->
+<div class="border rounded-lg bg-gray-800 shadow-sm">
+    <div class="p-4 border-b border-gray-700">
+        <div class="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-100">Vulnerabilities</h2>
+                <p class="text-sm text-gray-400">View and manage discovered vulnerabilities</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <select id="severity-filter" class="w-[130px] border rounded-md px-3 py-2 text-sm bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterVulnerabilities()" aria-label="Filter by severity">
+                    <option value="all">All Severities</option>
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <select id="priority-filter" class="w-[130px] border rounded-md px-3 py-2 text-sm bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterVulnerabilities()" aria-label="Filter by priority">
+                    <option value="all">All Priorities</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <select id="exploit-filter" class="w-[140px] border rounded-md px-3 py-2 text-sm bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="filterVulnerabilities()" aria-label="Filter by exploitability">
+                    <option value="all">All Exploitability</option>
+                    <option value="true">Has Exploit</option>
+                    <option value="false">No Exploit</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full" aria-label="Vulnerability list">
+            <thead>
+                <tr class="bg-gray-700">
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300">CVE ID</th>
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300">Severity</th>
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300">Priority</th>
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300 hidden md:table-cell">Analysis</th>
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300 hidden lg:table-cell">Remediation</th>
+                    <th scope="col" class="px-4 py-2 text-left text-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="vuln-table-body"></tbody>
+        </table>
+    </div>
+</div>

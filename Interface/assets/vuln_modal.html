@@ -1,0 +1,124 @@
+<!-- RA5olver Vulnerability Modal -->
+<!-- Copyright © 2025 Ian Rivera. All rights reserved. -->
+<div id="vuln-modal" class="modal" role="dialog" aria-labelledby="modal-cve-id" aria-hidden="true">
+    <div class="modal-content">
+        <div class="flex items-start justify-between mb-4 p-4 border-b border-gray-700">
+            <div>
+                <h1 class="text-xl font-semibold flex items-center gap-2 text-gray-100">
+                    <svg class="h-5 w-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4zm-8 0c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zm0-8c0-1.1.9-2 2-2h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V3z"></path>
+                    </svg>
+                    <span id="modal-cve-id">CVE-ID</span>
+                </h1>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <span id="modal-severity" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
+                    <span id="modal-priority" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
+                    <span id="modal-exploit" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold"></span>
+                </div>
+            </div>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-300" aria-label="Close modal">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="border-b mb-4 px-4">
+            <div class="flex border-b border-gray-700" role="tablist">
+                <button class="tab-button active" data-tab="analysis" onclick="switchTab('analysis')" role="tab" aria-controls="analysis" aria-selected="true">Analysis</button>
+                <button class="tab-button" data-tab="feature-importance" onclick="switchTab('feature-importance')" role="tab" aria-controls="feature-importance" aria-selected="false">Feature Importance</button>
+                <button class="tab-button" data-tab="shap-values" onclick="switchTab('shap-values')" role="tab" aria-controls="shap-values" aria-selected="false">SHAP Values</button>
+                <button class="tab-button" data-tab="remediation" onclick="switchTab('remediation')" role="tab" aria-controls="remediation" aria-selected="false">Remediation</button>
+            </div>
+        </div>
+
+        <div class="space-y-4 px-4 pb-4">
+            <!-- Analysis Tab -->
+            <div id="analysis" class="tab-content active" role="tabpanel" aria-labelledby="analysis-tab">
+                <div class="border rounded-lg p-4 bg-gray-800 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-100">Vulnerability Analysis</h2>
+                    <p class="text-sm text-gray-400">Detailed analysis of the vulnerability</p>
+                    <div class="space-y-4 mt-4">
+                        <div>
+                            <h4 class="font-medium mb-1 text-gray-100">Analysis</h4>
+                            <p id="modal-analysis" class="text-sm text-gray-300"></p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1 text-gray-100">Priority Justification</h4>
+                            <p id="modal-priority-justification" class="text-sm text-gray-300"></p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1 text-gray-100">Severity Rationale</h4>
+                            <p id="modal-severity-rationale" class="text-sm text-gray-300"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Importance Tab -->
+            <div id="feature-importance" class="tab-content" role="tabpanel" aria-labelledby="feature-importance-tab">
+                <div class="border rounded-lg p-4 bg-gray-800 shadow-sm">
+                    <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-100">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Feature Importance
+                    </h2>
+                    <p class="text-sm text-gray-400">Relative importance of factors in determining vulnerability priority</p>
+                    <div class="mt-4">
+                        <canvas id="modal-feature-importance-chart" class="h-80" aria-label="Feature Importance Chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHAP Values Tab -->
+            <div id="shap-values" class="tab-content" role="tabpanel" aria-labelledby="shap-values-tab">
+                <div class="border rounded-lg p-4 bg-gray-800 shadow-sm">
+                    <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-100">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        </svg>
+                        SHAP Values
+                    </h2>
+                    <p class="text-sm text-gray-400">SHAP (SHapley Additive exPlanations) values showing feature contributions</p>
+                    <div class="flex flex-col md:flex-row gap-6 items-center mt-4">
+                        <div class="w-full md:w-1/2">
+                            <canvas id="modal-shap-values-chart" class="h-64" aria-label="SHAP Values Chart"></canvas>
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-2">
+                            <p class="text-sm text-gray-300 mb-4">
+                                SHAP values explain the machine learning model’s output by computing each feature’s contribution to the prediction.
+                            </p>
+                            <div id="shap-values-list" class="grid grid-cols-1 gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remediation Tab -->
+            <div id="remediation" class="tab-content" role="tabpanel" aria-labelledby="remediation-tab">
+                <div class="border rounded-lg p-4 bg-gray-800 shadow-sm">
+                    <h2 class="text-lg font-semibold flex items-center gap-2 text-gray-100">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                        Remediation Steps
+                    </h2>
+                    <p class="text-sm text-gray-400">Recommended steps to address this vulnerability</p>
+                    <div class="p-4 bg-gray-700 rounded-md border border-gray-600 mt-4">
+                        <pre id="modal-remediation" class="whitespace-pre-wrap text-sm text-gray-300"></pre>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="font-medium mb-2 text-gray-100">Additional Resources</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
+                            <li><a href="#" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Official Vendor Advisory</a></li>
+                            <li><a href="#" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">NIST Vulnerability Database</a></li>
+                            <li><a href="#" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">MITRE CVE Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

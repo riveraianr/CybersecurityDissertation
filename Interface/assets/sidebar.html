@@ -1,0 +1,97 @@
+<!-- RA5olver Sidebar -->
+<!-- Copyright © 2025 Ian Rivera. All rights reserved. -->
+<aside id="sidebar" class="w-64 sidebar lg:translate-x-0">
+    <div class="p-4 border-b flex items-center justify-between bg-gray-800">
+        <div class="flex items-center gap-2">
+            <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4zm-8 0c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zm0-8c0-1.1.9-2 2-2h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V3z"></path>
+            </svg>
+            <span class="font-bold text-lg text-gray-100">RA5olver</span>
+        </div>
+        <button class="lg:hidden" onclick="toggleSidebar()" aria-label="Close sidebar">
+            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="p-4 border-b bg-gray-800">
+        <div class="space-y-1">
+            <h3 class="text-sm font-medium text-gray-400">Vulnerability Summary</h3>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="flex items-center p-2 rounded-md bg-gray-700 border border-gray-600">
+                    <div class="h-2 w-2 rounded-full mr-2 bg-red-500"></div>
+                    <span class="text-xs text-gray-300">Critical</span>
+                    <span id="critical-count" class="ml-auto font-medium text-gray-100">0</span>
+                </div>
+                <div class="flex items-center p-2 rounded-md bg-gray-700 border border-gray-600">
+                    <div class="h-2 w-2 rounded-full mr-2 bg-orange-500"></div>
+                    <span class="text-xs text-gray-300">High</span>
+                    <span id="high-count" class="ml-auto font-medium text-gray-100">0</span>
+                </div>
+                <div class="flex items-center p-2 rounded-md bg-gray-700 border border-gray-600">
+                    <div class="h-2 w-2 rounded-full mr-2 bg-yellow-500"></div>
+                    <span class="text-xs text-gray-300">Medium</span>
+                    <span id="medium-count" class="ml-auto font-medium text-gray-100">0</span>
+                </div>
+                <div class="flex items-center p-2 rounded-md bg-gray-700 border border-gray-600">
+                    <div class="h-2 w-2 rounded-full mr-2 bg-green-500"></div>
+                    <span class="text-xs text-gray-300">Low</span>
+                    <span id="low-count" class="ml-auto font-medium text-gray-100">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto">
+        <div class="px-3 py-2">
+            <div class="space-y-1">
+                <p class="text-xs font-medium text-gray-500 px-4 py-2">Main Navigation</p>
+                <nav class="grid gap-1">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4zm-8 0c0-1.1.9-2 2-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zm0-8c0-1.1.9-2 2-2h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V3z"></path>
+                        </svg>
+                        Vulnerabilities
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        Advanced Search
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Alerts
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Reports
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium hover:bg-gray-700 rounded-md text-gray-300">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Scan History
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 border-t bg-gray-800">
+        <button class="w-full flex items-center gap-2 px-3 py-2 text-sm font-medium border rounded-md hover:bg-gray-700 text-gray-300 border-gray-600" aria-label="Open settings">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path>
+            </svg>
+            Settings
+        </button>
+    </div>
+</aside>
